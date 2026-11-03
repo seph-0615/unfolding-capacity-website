@@ -1,0 +1,122 @@
+
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* =====================================
+   CLIENTS & PARTNERS LOGO CAROUSEL
+===================================== */
+
+.logo-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+}
+
+.logo-track {
+  display: flex;
+  width: max-content;
+  animation: logo-belt-move 35s linear infinite;
+  will-change: transform;
+}
+
+/* Each group contains one complete set of logos */
+.logo-group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
+}
+
+/* Individual logo cards */
+.logo-card {
+  width: 220px;
+  height: 145px;
+  flex: 0 0 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  box-sizing: border-box;
+  border: 1px solid #e8edf2;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 5px 18px rgba(11, 19, 32, 0.04);
+  transition: transform 0.3s ease,
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+}
+
+.logo-card:hover {
+  transform: translateY(-6px);
+  border-color: #2596be;
+  box-shadow: 0 12px 28px rgba(11, 19, 32, 0.10);
+}
+
+.logo-card img {
+  display: block;
+  max-width: 100%;
+  max-height: 85px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo-card:hover img {
+  transform: scale(1.04);
+}
+
+/* Continuous left-to-right movement */
+@keyframes logo-belt-move {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Pause animation when hovering */
+.logo-marquee:hover .logo-track {
+  animation-play-state: paused;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .logo-marquee {
+    padding: 15px 0;
+  }
+
+  .logo-group {
+    gap: 18px;
+    padding-right: 18px;
+  }
+
+  .logo-card {
+    width: 170px;
+    height: 120px;
+    flex-basis: 170px;
+    padding: 18px;
+  }
+
+  .logo-card img {
+    max-height: 75px;
+  }
+
+  .logo-track {
+    animation-duration: 30s;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .logo-track {
+    animation: none;
+  }
+}
